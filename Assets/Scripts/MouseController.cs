@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 
 [System.Serializable] public class UnityEventVector3 : UnityEvent<Vector3> { }
@@ -26,7 +27,7 @@ public class MouseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!buildController.buildMode)
+        if (!buildController.buildMode )
         {
             if (Input.GetMouseButtonDown(0))
             {

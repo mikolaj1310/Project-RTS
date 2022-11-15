@@ -6,15 +6,34 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     private BuildingController buildingController;
-    [SerializeField] GameObject factoryPrefab;
     
     private void Start()
     {
         buildingController = GameObject.Find("GameManager").GetComponent<BuildingController>();
     }
 
-    public void BuildFactoryButton()
+    public void BuildHouseButton()
     {
-        buildingController.SetCurrentlyHeldBuilding(factoryPrefab);
+        buildingController.CreateBuilding(BuildingType.BT_House);
+    }
+    public void BuildBarracksButton()
+    {
+        buildingController.CreateBuilding(BuildingType.BT_Barracks);
+    }
+    public void BuildBankButton()
+    {
+        buildingController.CreateBuilding(BuildingType.BT_Bank);
+    }
+    public void BuildTowerButton()
+    {
+        buildingController.CreateBuilding(BuildingType.BT_Tower);
+    }
+    public void BuildAlchemistButton()
+    {
+        buildingController.CreateBuilding(BuildingType.BT_Alchemist);
+    }
+    public void BuildLumberMillButton()
+    {
+        buildingController.CreateBuilding(BuildingType.BT_LumberMill);
     }
 }
