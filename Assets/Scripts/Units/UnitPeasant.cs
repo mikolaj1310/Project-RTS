@@ -5,4 +5,9 @@ using UnityEngine;
 public class UnitPeasant : Unit
 {
     
+    protected override void Start()
+    {
+        base.Start();
+        unitType = UnitType.UT_Peasant;
+    }
 }

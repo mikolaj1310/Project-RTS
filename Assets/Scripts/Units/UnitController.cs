@@ -19,7 +19,6 @@ public class UnitController : MonoBehaviour
     private Vector3 direction;
     private UnitState currentState;
     [SerializeField] private float movementSpeed;
-    bool unitSelected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,12 +64,10 @@ public class UnitController : MonoBehaviour
         if (!highlight)
         {
             lightIntensity = 0;
-            unitSelected = false;
         }
         else
         {
             lightIntensity = 100;
-            unitSelected = true;
         }
 
         this.gameObject.transform.Find("UnitSelection").GetComponent<Light>().intensity = lightIntensity;

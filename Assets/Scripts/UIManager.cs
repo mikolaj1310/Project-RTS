@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    private BuildingController buildingController;
+    public BuildingController buildingController;
     
     private void Start()
     {
-        buildingController = GameObject.Find("GameManager").GetComponent<BuildingController>();
     }
 
     public void BuildHouseButton()

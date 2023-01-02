@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class UnitPaladin : Unit
 {
-    
+    protected override void Start()
+    {
+        base.Start();
+        unitType = UnitType.UT_Paladin;
+    }
 }
