@@ -584,6 +584,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  unitTargetType: 0
+  unitTargetObject: {fileID: 0}
 --- !u!195 &-8963117010994173396
 NavMeshAgent:
   m_ObjectHideFlags: 0

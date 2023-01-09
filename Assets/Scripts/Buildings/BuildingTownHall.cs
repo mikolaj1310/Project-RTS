@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-public class BuildingTownHall : BuildingBase
+public class BuildingTownHall : BuildingProduction
 {
     [SerializeField] public int ownerID;
     // Start is called before the first frame update
@@ -39,12 +39,15 @@ public class BuildingTownHall : BuildingBase
             }
         }
     }
-    
+
     [Client]
     private void SpawnPeasant()
     {
+        if (!buildFinished) { return; }
         var unitPath = "Prefabs/Units/P_UnitPeasant";
-        mouseController.CmdSpawnUnit(ownerID, unitPath, transform.position, flagMarker.transform.position);
+        var iconPath = "Prefabs/Art/Icons/UI_PeasantIcon";
+        AddUnitToProductionQueue(unitPath, 2, iconPath);
+        //mouseController.CmdSpawnUnit(mouseController.clientID, unitPath, flagMarker.transform.position);
     }
     
     [Client]
@@ -52,6 +55,5 @@ public class BuildingTownHall : BuildingBase
     {
         buildingUI = GameObject.Find("GUI").transform.Find("TownHallMenu").gameObject;
         buildingUI.transform.Find("TrainPeasantButton").GetComponent<Button>().onClick.AddListener(SpawnPeasant);
-        
     }
 }

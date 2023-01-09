@@ -34,8 +34,6 @@ public class MouseController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if(isOwned && isClient)
-            //clientID = (int)netId;
         playerUnits = new ArrayList[2];
         playerUnits[0] = new ArrayList();
         playerUnits[1] = new ArrayList();
@@ -51,8 +49,6 @@ public class MouseController : NetworkBehaviour
     [Client]
     void Update()
     {
-        //GetComponent<NetworkIdentity>().AssignClientAuthority()
-
         if (isClient && isOwned)
         {
             SetClientID();

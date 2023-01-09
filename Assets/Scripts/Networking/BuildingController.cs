@@ -6,6 +6,7 @@ using kcp2k;
 using Mirror;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class BuildingController : NetworkBehaviour
@@ -128,7 +129,7 @@ public class BuildingController : NetworkBehaviour
                     buildMode = false;
                     var newBuilding = tempBuilding;
                     CmdSpawnBuilding(clientID, currentlyHeldBuildingType, clickPosition);
-
+                    
                     Destroy(tempBuilding);
                     tempBuilding = null;
                     

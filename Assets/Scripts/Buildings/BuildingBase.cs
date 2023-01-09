@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public enum BuildingType
@@ -25,6 +26,7 @@ public class BuildingBase : NetworkBehaviour
     public MouseController mouseController;
     private GameObject flagPrefab;
     protected GameObject flagMarker;
+    protected NavMeshSurface navMeshSurface;
     
     protected GameObject buildingModel;
     protected GameObject buildInProgressModel;
@@ -74,6 +76,7 @@ public class BuildingBase : NetworkBehaviour
         healthBar = Instantiate(healthBar);
         healthBar.transform.position = transform.position;
         healthBar.transform.parent = transform;
+        navMeshSurface = GameObject.Find("Terrain").GetComponent<NavMeshSurface>();
     }
     
     protected virtual void Update()
@@ -92,11 +95,24 @@ public class BuildingBase : NetworkBehaviour
             {
                 buildFinished = true;
                 buildInProgressModel.SetActive(false);
+                CmdRecalculateNavMesh();
             }
                 
             buildingModel.transform.position = Vector3.Lerp(buildInProgressStartPosition,
                 transform.position, currentHealth / maxHealth);
         }
+    }
+
+    [Command]
+    protected void CmdRecalculateNavMesh()
+    {
+        RpcRecalculateNavMesh();
+    }
+    
+    [ClientRpc]
+    protected void RpcRecalculateNavMesh()
+    {
+        navMeshSurface.BuildNavMesh();
     }
     
     protected Vector3 GetDestinationAroundFlagMarker()
